@@ -9,7 +9,6 @@
     xepsilon(3)=0.0,
     xiabs=1,
     x_save_file='diamond.xspectra.sav',
-    ef_r=,
     xerror=0.001,
  /
  &plot
