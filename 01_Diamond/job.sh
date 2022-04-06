@@ -1,12 +1,13 @@
 #!/bin/bash
-#module load for Quantum Espresso
-#SBATCH --job-name=nconex23
-#SBATCH --time=4:00:00
-#SBATCH --partition=defq
-#SBATCH --ntasks=4
-##SBATCH --cpus-per-task=4
-#SBATCH --mem-per-cpu=2000M
+#SBATCH -p scarf
+#SBATCH -C amd
+#SBATCH -n 32
+#SBATCH -t 30
+#SBATCH -o %J.log
+#SBATCH -e %J.err
 
-module load QuantumESPRESSO/6.8-foss-2021b
+module load contrib/dls-spectroscopy/quantum-espresso/6.5-intel-18.0.3
 
-srun --reservation=ntp42_70 -n 4 pw.x -inp diamond.scf.in > diamond.scf.out
+input=diamond.scf
+
+mpirun -np 2 pw.x -inp $input'.in' > $input'.out'
